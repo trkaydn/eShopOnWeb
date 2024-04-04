@@ -41,5 +41,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         });
 
         builder.Navigation(x => x.ShipToAddress).IsRequired();
+        builder.Navigation(x=> x.Status).IsRequired();
     }
 }
