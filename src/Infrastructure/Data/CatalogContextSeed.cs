@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopWeb.ApplicationCore.Entities;
+using Microsoft.eShopWeb.ApplicationCore.Entities.OrderAggregate;
 using Microsoft.Extensions.Logging;
 
 namespace Microsoft.eShopWeb.Infrastructure.Data;
@@ -44,13 +45,20 @@ public class CatalogContextSeed
 
                 await catalogContext.SaveChangesAsync();
             }
+            if (!await catalogContext.OrderStatus.AnyAsync())
+            {
+                await catalogContext.OrderStatus.AddRangeAsync(
+                    GetPreconfiguredOrderStatus());
+
+                await catalogContext.SaveChangesAsync();
+            }
         }
         catch (Exception ex)
         {
             if (retryForAvailability >= 10) throw;
 
             retryForAvailability++;
-            
+
             logger.LogError(ex.Message);
             await SeedAsync(catalogContext, logger, retryForAvailability);
             throw;
@@ -97,5 +105,16 @@ public class CatalogContextSeed
                 new(3,2, "Cup<T> Sheet", "Cup<T> Sheet", 8.5M, "http://catalogbaseurltobereplaced/images/products/11.png"),
                 new(2,5, "Prism White TShirt", "Prism White TShirt", 12, "http://catalogbaseurltobereplaced/images/products/12.png")
             };
+    }
+    static IEnumerable<OrderStatus> GetPreconfiguredOrderStatus()
+    {
+        return new List<OrderStatus>()
+        {
+             new OrderStatus { Status = "Pending" },
+             new OrderStatus {  Status = "Processing" },
+             new OrderStatus { Status = "Shipped" },
+             new OrderStatus { Status = "Delivered" },
+             new OrderStatus { Status = "Cancelled" }
+        };
     }
 }
