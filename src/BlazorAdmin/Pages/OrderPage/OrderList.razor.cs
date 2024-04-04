@@ -2,7 +2,7 @@
 
 namespace BlazorAdmin.Pages.OrderPage;
 
-public class OrderList : BlazorComponent
+public partial class OrderList : BlazorComponent
 {
 
 }
