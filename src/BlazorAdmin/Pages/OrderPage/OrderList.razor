@@ -8,3 +8,14 @@
 <h1>Manage Orders</h1>
 
 <p>buraya sipariş listesi gelecek!</p>
+
+
+@if (orders == null)
+{
+    <Spinner></Spinner>
+    <p>YOK</p>
+}
+else
+{
+    <h1>@orders.Count</h1>
+}

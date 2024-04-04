@@ -15,5 +15,5 @@ public class ListOrderResponse : BaseResponse
     {
     }
 
-    public List<OrderItemDto> OrderItems { get; set; } = new List<OrderItemDto>();
+    public List<OrderDto> Orders { get; set; } = new List<OrderDto>();
 }
