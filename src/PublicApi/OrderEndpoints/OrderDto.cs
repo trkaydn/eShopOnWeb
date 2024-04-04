@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Microsoft.eShopWeb.PublicApi.OrderEndpoints;
 
@@ -9,4 +10,5 @@ public class OrderDto
     public DateTimeOffset OrderDate { get; set; }
     public decimal Total { get; set; }
     public string Status { get; set; }
+    public List<OrderItemDto> OrderItems { get; set; } 
 }

@@ -29,7 +29,7 @@ public class OrderListEndPoint : IEndpoint<IResult, IRepository<Order>>
                 return await HandleAsync(orderRepository);
             })
            .Produces<ListOrderResponse>()
-           .WithTags("OrderItemEndpoints");
+           .WithTags("OrderEndpoints");
     }
 
     public async Task<IResult> HandleAsync(IRepository<Order> orderRepository)

@@ -14,7 +14,7 @@ public partial class OrderList : BlazorComponent
     public IOrderService OrderService { get; set; }
 
     private List<Order> orders = new List<Order>();
-    private Details DetailsComponent { get; set; }
+    private OrderDetails DetailsComponent { get; set; }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -24,6 +24,10 @@ public partial class OrderList : BlazorComponent
         }
 
         await base.OnAfterRenderAsync(firstRender);
+    }
+    private async void DetailsClick(int id)
+    {
+        await DetailsComponent.Open(id);
     }
 
 }

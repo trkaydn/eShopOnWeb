@@ -24,11 +24,6 @@ public class CachedOrderServiceDecorator : IOrderService
         _logger = logger;
     }
 
-    public Task<string> Delete(int id)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public async Task<Order> Edit(Order order)
     {
         var result = await _orderService.Edit(order);

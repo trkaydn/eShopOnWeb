@@ -111,10 +111,7 @@ public class CatalogContextSeed
         return new List<OrderStatus>()
         {
              new OrderStatus { Status = "Pending" },
-             new OrderStatus {  Status = "Processing" },
-             new OrderStatus { Status = "Shipped" },
-             new OrderStatus { Status = "Delivered" },
-             new OrderStatus { Status = "Cancelled" }
+             new OrderStatus {  Status = "Approved" }
         };
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BlazorShared.Models;
 public class Order
@@ -8,4 +9,5 @@ public class Order
     public DateTimeOffset OrderDate { get; set; }
     public decimal Total { get; set; }
     public string Status { get; set; }
+    public List<OrderItem> OrderItems { get; set; }
 }
