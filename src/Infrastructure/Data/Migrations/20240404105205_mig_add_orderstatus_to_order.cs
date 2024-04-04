@@ -22,14 +22,6 @@ namespace Microsoft.eShopWeb.Infrastructure.Data.Migrations
                 oldMaxLength: 60,
                 oldNullable: true);
 
-            migrationBuilder.AddColumn<string>(
-                name: "OrderStatus",
-                table: "Orders",
-                type: "nvarchar(50)",
-                maxLength: 50,
-                nullable: false,
-                defaultValue: "");
-
             migrationBuilder.AlterColumn<string>(
                 name: "ItemOrdered_ProductName",
                 table: "OrderItems",
@@ -76,10 +68,6 @@ namespace Microsoft.eShopWeb.Infrastructure.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "OrderStatus",
-                table: "Orders");
-
             migrationBuilder.AlterColumn<string>(
                 name: "ShipToAddress_State",
                 table: "Orders",
