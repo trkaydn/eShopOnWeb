@@ -24,13 +24,13 @@ public class OrderService : IOrderService
 
     public async Task<Order> Edit(Order order)
     {
-        var values = await _httpService.HttpPut<EditOrderResult>("orders", order);
+        var values = await _httpService.HttpPut<EditOrderResult>("orders/edit", order);
         return values.Order;
     }
 
     public async Task<Order> GetById(int id)
     {
-        var values = await _httpService.HttpGet<EditOrderResult>($"orders/{id}");
+        var values = await _httpService.HttpGet<EditOrderResult>($"orders/detail/{id}");
         return values.Order;
     }
 
@@ -38,13 +38,6 @@ public class OrderService : IOrderService
     {
         _logger.LogInformation("Fetching orders from API.");
         var values = await _httpService.HttpGet<PagedOrderResponse>($"orders");
-        return values.Orders;
-    }
-
-    public async Task<List<Order>> ListPaged(int pageSize)
-    {
-        _logger.LogInformation("Fetching orders from API.");
-        var values = await _httpService.HttpGet<PagedOrderResponse>($"orders");   
         return values.Orders;
     }
 }
