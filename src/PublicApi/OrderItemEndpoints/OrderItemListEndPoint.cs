@@ -27,7 +27,7 @@ public class OrderItemListEndPoint : IEndpoint<IResult, IRepository<Order>>
 
     public void AddRoute(IEndpointRouteBuilder app)
     {
-        app.MapGet("api/getorders",
+        app.MapGet("api/order-items",
             async (IRepository<Order> orderRepository) =>
             {
                 return await HandleAsync(orderRepository);
