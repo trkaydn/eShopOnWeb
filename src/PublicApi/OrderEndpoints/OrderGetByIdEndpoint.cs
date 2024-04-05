@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -23,7 +25,8 @@ public class OrderGetByIdEndpoint : IEndpoint<IResult, GetByIdOrderRequest, IRep
     public void AddRoute(IEndpointRouteBuilder app)
     {
         app.MapGet("api/orders/detail/{orderId}",
-           async (int orderId, IRepository<Order> itemRepository) =>
+            [Authorize(Roles = BlazorShared.Authorization.Constants.Roles.ADMINISTRATORS, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async
+           (int orderId, IRepository<Order> itemRepository) =>
            {
                return await HandleAsync(new GetByIdOrderRequest(orderId), itemRepository);
            })

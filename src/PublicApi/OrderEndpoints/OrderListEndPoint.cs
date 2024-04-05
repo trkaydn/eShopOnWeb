@@ -25,7 +25,8 @@ public class OrderListEndPoint : IEndpoint<IResult, IRepository<Order>>
 
     public void AddRoute(IEndpointRouteBuilder app)
     {
-        app.MapGet("api/orders", [Authorize(Roles = BlazorShared.Authorization.Constants.Roles.ADMINISTRATORS, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async
+        app.MapGet("api/orders",
+            [Authorize(Roles = BlazorShared.Authorization.Constants.Roles.ADMINISTRATORS, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async
             (IRepository<Order> orderRepository) =>
             {
                 return await HandleAsync(orderRepository);

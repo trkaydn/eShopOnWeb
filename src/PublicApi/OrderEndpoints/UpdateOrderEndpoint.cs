@@ -28,7 +28,7 @@ public class UpdateOrderEndpoint : IEndpoint<IResult, UpdateOrderRequest, IRepos
     {
         app.MapPut("api/orders",
               [Authorize(Roles = BlazorShared.Authorization.Constants.Roles.ADMINISTRATORS, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-              async
+        async
               (UpdateOrderRequest request, IRepository<Order> itemRepository) =>
               {
                   return await HandleAsync(request, itemRepository);
@@ -56,7 +56,7 @@ public class UpdateOrderEndpoint : IEndpoint<IResult, UpdateOrderRequest, IRepos
         var dto = new OrderDto
         {
             Id = existingItem.Id,
-            BuyerId= existingItem.BuyerId,
+            BuyerId = existingItem.BuyerId,
             OrderDate = existingItem.OrderDate,
             OrderItems = _mapper.Map<List<OrderItemDto>>(existingItem.OrderItems),
             Status = _mapper.Map<OrderStatusDto>(existingItem.Status),
