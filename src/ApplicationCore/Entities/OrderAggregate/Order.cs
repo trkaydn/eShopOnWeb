@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ardalis.GuardClauses;
-using BlazorShared.Models;
 using Microsoft.eShopWeb.ApplicationCore.Interfaces;
 
 namespace Microsoft.eShopWeb.ApplicationCore.Entities.OrderAggregate;
