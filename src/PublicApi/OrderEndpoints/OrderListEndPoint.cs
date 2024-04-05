@@ -34,12 +34,12 @@ public class OrderListEndPoint : IEndpoint<IResult, IRepository<Order>>
 
     public async Task<IResult> HandleAsync(IRepository<Order> orderRepository)
     {
-       var response = new ListOrderResponse();
+        var response = new ListOrderResponse();
         var specification = new OrderSpecifications();
 
         var items = await orderRepository.ListAsync(specification);
 
-        response.Orders.AddRange(items.Select(_mapper.Map<OrderDto>));
+        response.Orders.AddRange(items.OrderByDescending(x => x.OrderDate).Select(_mapper.Map<OrderDto>));
 
         return Results.Ok(response);
     }

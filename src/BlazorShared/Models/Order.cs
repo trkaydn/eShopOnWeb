@@ -8,6 +8,6 @@ public class Order
     public string BuyerId { get; set; }
     public DateTimeOffset OrderDate { get; set; }
     public decimal Total { get; set; }
-    public string Status { get; set; }
+    public OrderStatus Status { get; set; }
     public List<OrderItem> OrderItems { get; set; }
 }

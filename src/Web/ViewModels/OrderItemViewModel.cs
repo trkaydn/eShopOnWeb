@@ -1,4 +1,6 @@
-﻿namespace Microsoft.eShopWeb.Web.ViewModels;
+﻿using BlazorShared.Models;
+
+namespace Microsoft.eShopWeb.Web.ViewModels;
 
 public class OrderItemViewModel
 {
@@ -8,4 +10,5 @@ public class OrderItemViewModel
     public decimal Discount => 0;
     public int Units { get; set; }
     public string? PictureUrl { get; set; }
+    public OrderStatus Status { get; set; }
 }

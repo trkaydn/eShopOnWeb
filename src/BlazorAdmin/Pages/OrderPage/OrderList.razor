@@ -10,7 +10,6 @@
 @if (orders == null)
 {
     <Spinner></Spinner>
-    <p>YOK</p>
 }
 else
 {
@@ -30,7 +29,7 @@ else
                     <td>@item.OrderDate.ToString("dd.MM.yyyy HH:mm")</td>
                     <td>@item.BuyerId</td>
                     <td>@item.Total</td>
-                    <td>@item.Status</td>
+                    <td>@item.Status.Status</td>
                     <td>
                         <button @onclick="@(() => DetailsClick(item.Id))" @onclick:stopPropagation="true" class="btn btn-primary">
                             Details

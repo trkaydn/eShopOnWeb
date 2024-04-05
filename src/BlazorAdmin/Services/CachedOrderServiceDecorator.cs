@@ -34,7 +34,11 @@ public class CachedOrderServiceDecorator : IOrderService
 
     public async Task<Order> GetById(int id)
     {
+        //get item from cached list
         return (await List()).FirstOrDefault(x => x.Id == id);
+
+        //get item from api
+        //return await _orderService.GetById(id);
     }
 
     public async Task<List<Order>> List()

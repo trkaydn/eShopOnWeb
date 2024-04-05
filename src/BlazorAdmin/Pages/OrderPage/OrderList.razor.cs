@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorAdmin.Helpers;
-using BlazorAdmin.Pages.CatalogItemPage;
-using BlazorAdmin.Services;
 using BlazorShared.Interfaces;
 using BlazorShared.Models;
 
