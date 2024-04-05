@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorAdmin.Helpers;
+using BlazorAdmin.Services;
 using BlazorShared.Interfaces;
 using BlazorShared.Models;
 
@@ -26,6 +27,13 @@ public partial class OrderList : BlazorComponent
     private async void DetailsClick(int id)
     {
         await DetailsComponent.Open(id);
+    }
+
+    private async Task ReloadOrders()
+    {
+        orders = await OrderService.List();
+        DetailsComponent.CallRequestRefresh();
+        StateHasChanged();
     }
 
 }

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Ardalis.Specification;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -23,8 +25,8 @@ public class OrderListEndPoint : IEndpoint<IResult, IRepository<Order>>
 
     public void AddRoute(IEndpointRouteBuilder app)
     {
-        app.MapGet("api/orders",
-            async (IRepository<Order> orderRepository) =>
+        app.MapGet("api/orders", [Authorize(Roles = BlazorShared.Authorization.Constants.Roles.ADMINISTRATORS, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async
+            (IRepository<Order> orderRepository) =>
             {
                 return await HandleAsync(orderRepository);
             })

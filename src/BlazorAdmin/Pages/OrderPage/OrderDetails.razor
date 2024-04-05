@@ -73,10 +73,11 @@
     private bool _showDetailsModal = false;
     private Order _item = new();
 
+    [Parameter]
+    public EventCallback<string> OnSaveClick { get; set; }
 
     public async Task Open(int id)
     {
-
         Logger.LogInformation("Now loading... /Order/Details/{Id}", id);
 
         await new Css(JSRuntime).HideBodyOverflow();
@@ -101,11 +102,8 @@
 
     public async Task Approve(int id)
     {
-        await new Css(JSRuntime).ShowBodyOverflow();
-
-        _modalDisplay = "none";
-        _modalClass = "";
-        _showDetailsModal = false;
+        await OrderService.Edit(_item); 
+        await OnSaveClick.InvokeAsync(null);
+        await Close();
     }
-
 }

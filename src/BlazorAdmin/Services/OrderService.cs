@@ -19,7 +19,7 @@ public class OrderService : IOrderService
 
     public async Task<Order> Edit(Order order)
     {
-        var values = await _httpService.HttpPut<EditOrderResult>("orders/edit", order);
+        var values = await _httpService.HttpPut<EditOrderResult>("orders", order);
         return values.Order;
     }
 
